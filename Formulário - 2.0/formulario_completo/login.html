@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+  </head>
+  <body>
+    <div id="player"></div>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '650',
+          width: '995',
+          videoId: 'hPr-Yc92qaY',
+          playerVars: {
+            'autoplay': 1,
+            'loop': 1
+          },
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.ENDED) {
+          player.seekTo(0);
+          player.playVideo();
+          numPlays++;
+          if (numPlays >= 10) {
+            player.stopVideo();
+          }
+        }
+      }
+      var numPlays = 0;
+    </script>
+  </body>
+</html>
